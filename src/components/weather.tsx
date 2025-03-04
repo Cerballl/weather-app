@@ -63,7 +63,7 @@ export default function Weather() {
   }
 
   useEffect(() => {
-    search('Polatsk');
+    search('');
   }, [])
 
   return (
