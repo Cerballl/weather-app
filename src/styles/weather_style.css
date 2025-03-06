@@ -112,6 +112,9 @@
   }
 }
 @media (max-width: 500px) {
+  body {
+    min-height: 100vh;
+  }
   .search-bar input {
     width: 150px;
     font-size: 14px;
