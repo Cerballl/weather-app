@@ -92,3 +92,37 @@
 .weather-data .col .weather-data-img {
   margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+  .weather {
+    padding: 20px;
+  }
+  .search-bar input {
+    width: 200px;
+    font-size: 16px;
+  }
+  .temperature {
+    font-size: 40px;
+  }
+  .city {
+    font-size: 24px;
+  }
+  .weather-data .col {
+    font-size: 16px;
+  }
+}
+@media (max-width: 500px) {
+  .search-bar input {
+    width: 150px;
+    font-size: 14px;
+  }
+  .temperature {
+    font-size: 30px;
+  }
+  .city {
+    font-size: 20px;
+  }
+  .weather-data .col {
+    font-size: 14px;
+  }
+}
