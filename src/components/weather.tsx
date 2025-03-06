@@ -24,30 +24,29 @@ export default function Weather() {
 
       const allIcons: { [key: string]: string } = {
         "01d": "/clear.png",
-        "02d": "/cloud.png",
-        "03d": "/cloud.png",
-        "04d": "/cloud.png",
-        "09d": "/rain.png",
-        "10d": "/drizzle.png",
-        "11d": "/rain.png",
+        "02d": "/partly_cloudy.png",
+        "03d": "/cloudy.png",
+        "04d": "/cloudy.png",
+        "09d": "/shower_rain.png",
+        "10d": "/rain.png",
+        "11d": "/storm.png",
         "13d": "/snow.png",
-        "50d": "/humidity.png",
-        "01n": "/clear.png",
-        "02n": "/cloud.png",
-        "03n": "/cloud.png",
-        "04n": "/cloud.png",
-        "09n": "/rain.png",
-        "10n": "/drizzle.png",
-        "11n": "/rain.png",
-        "13n": "/snow.png",
-        "50n": "/humidity.png",
+        "50d": "/mist.png",
+        "01n": "/clear_night.png",
+        "02n": "/cloudy_night.png",
+        "03n": "/cloudy_night.png",
+        "04n": "/cloudy_night.png",
+        "09n": "/rain_night.png",
+        "10n": "/rain_night.png",
+        "11n": "/storm_night.png",
+        "13n": "/snow_night.png",
+        "50n": "/mist.png",
       }
 
       const response = await fetch(url);
       const data = await response.json();
       console.log(data);
 
-      // Отримуємо іконку згідно з погодними умовами
       const icon = allIcons[data.weather[0].icon];
 
       setWeatherData({
@@ -70,7 +69,7 @@ export default function Weather() {
     <div className="weather">
       <div className="search-bar">
         <input ref={inputRef} type="text" placeholder="Search" />
-        <Image onClick={()=>search(inputRef.current.value)}
+        <Image onClick={()=>search(inputRef.current?.value || "")}
           src="/search.svg" alt="search" width={50} height={50} className='search-bar-img' />
       </div>
 
