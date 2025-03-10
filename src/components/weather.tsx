@@ -80,14 +80,14 @@ export default function Weather() {
           <p className='city'>{weatherData.city}</p>
           <div className="weather-data">
             <div className="col">
-              <Image src="/humidity.png" alt="humidity-icon" width={26} height={26} className='weather-data-img' />
+              <Image src="/mist.svg" alt="humidity-icon" width={26} height={26} className='weather-data-img' />
               <div>
                 <p>{weatherData.humidity} %</p>
                 <span>Humidity</span>
               </div>
             </div>
             <div className="col">
-              <Image src="/wind.png" alt="wind-icon" width={26} height={26} className='weather-data-img' />
+              <Image src="/wind.svg" alt="wind-icon" width={26} height={26} className='weather-data-img' />
               <div>
                 <p>{weatherData.windSpeed} km/h</p>
                 <span>Wind Speed</span>
