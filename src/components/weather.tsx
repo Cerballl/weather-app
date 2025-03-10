@@ -23,24 +23,24 @@ export default function Weather() {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY}&units=metric`;
 
       const allIcons: { [key: string]: string } = {
-        "01d": "/clear.png",
-        "02d": "/partly_cloudy.png",
-        "03d": "/cloudy.png",
-        "04d": "/cloudy.png",
-        "09d": "/shower_rain.png",
-        "10d": "/rain.png",
-        "11d": "/storm.png",
-        "13d": "/snow.png",
-        "50d": "/mist.png",
-        "01n": "/clear_night.png",
-        "02n": "/cloudy_night.png",
-        "03n": "/cloudy_night.png",
-        "04n": "/cloudy_night.png",
-        "09n": "/rain_night.png",
-        "10n": "/rain_night.png",
-        "11n": "/storm_night.png",
-        "13n": "/snow_night.png",
-        "50n": "/mist.png",
+        "01d": "/clear_day.svg",
+        "02d": "/few_clouds_day.svg",
+        "03d": "/scattered_clouds_day.svg",
+        "04d": "/broken_clouds_day.svg",
+        "09d": "/shower_rain.svg",
+        "10d": "/rain_day.svg",
+        "11d": "/thunderstorm.svg",
+        "13d": "/snow_day.svg",
+        "50d": "/mist.svg",
+        "01n": "/clear_night.svg",
+        "02n": "/few_clouds_night.svg",
+        "03n": "/scattered_clouds_night.svg",
+        "04n": "/broken_clouds_night.svg",
+        "09n": "/shower_rain_night.svg",
+        "10n": "/rain_night.svg",
+        "11n": "/thunderstorm_night.svg",
+        "13n": "/snow_night.svg",
+        "50n": "/mist.svg",
       }
 
       const response = await fetch(url);
@@ -73,7 +73,6 @@ export default function Weather() {
           src="/search.svg" alt="search" width={50} height={50} className='search-bar-img' />
       </div>
 
-      {/* Виводимо іконку погоди, якщо дані завантажено */}
       {weatherData && (
         <>
           <Image className='weather-icon' src={weatherData.icon} alt="weather_icon" width={175} height={175} />
