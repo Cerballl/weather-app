@@ -1,11 +1,36 @@
+//animations//
+@keyframes startupSite {
+    from {
+      opacity: 0;
+      transform: translateY(-75px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes collapseFadeOut {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+//
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    animation: collapseFadeOut 1s  ease-out forwards;
 }
 
 .app {
     min-height: 100vh;
     display: grid;
-    background: #b3d9ff;
 }

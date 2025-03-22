@@ -4,7 +4,6 @@ import '@/styles/weather_style.css';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-// Типізація для даних погоди
 interface WeatherData {
   humidity: number;
   windSpeed: number;
@@ -15,11 +14,16 @@ interface WeatherData {
 
 export default function Weather() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    search('');
+  }, []);
 
   const search = async (city: string) => {
     try {
+      if (!city) return;
+
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_API_KEY}&units=metric`;
 
       const allIcons: { [key: string]: string } = {
@@ -41,13 +45,14 @@ export default function Weather() {
         "11n": "/thunderstorm_night.svg",
         "13n": "/snow_night.svg",
         "50n": "/mist.svg",
-      }
+      };
 
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
 
-      const icon = allIcons[data.weather[0].icon];
+      if (!response.ok) throw new Error(data.message || "Error fetching weather");
+
+      const icon = allIcons[data.weather[0].icon] || "/clear_day.svg";
 
       setWeatherData({
         humidity: data.main.humidity,
@@ -57,45 +62,58 @@ export default function Weather() {
         icon: icon,
       });
     } catch (error) {
-      console.log(error);
+      console.error("Помилка отримання погоди:", error);
     }
-  }
+  };
 
-  useEffect(() => {
-    search('');
-  }, [])
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && inputRef.current) {
+      search(inputRef.current.value);
+    }
+  };
 
   return (
     <div className="weather">
       <div className="search-bar">
-        <input ref={inputRef} type="text" placeholder="Search" />
-        <Image onClick={()=>search(inputRef.current?.value || "")}
-          src="/search.svg" alt="search" width={50} height={50} className='search-bar-img' />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search"
+          onKeyDown={handleKeyDown} // Викликається при натисканні клавіш
+        />
+        <Image
+          onClick={() => search(inputRef.current?.value || "")} // Виклик функції без event
+          src="/search.svg"
+          alt="search"
+          width={50}
+          height={50}
+          className='search-bar-img'
+        />
       </div>
 
       {weatherData && (
         <>
-          <Image className='weather-icon' src={weatherData.icon} alt="weather_icon" width={175} height={175} />
-          <p className='temperature'>{weatherData.temperature}°C</p>
-          <p className='city'>{weatherData.city}</p>
-          <div className="weather-data">
-            <div className="col">
-              <Image src="/mist.svg" alt="humidity-icon" width={26} height={26} className='weather-data-img' />
-              <div>
-                <p>{weatherData.humidity} %</p>
-                <span>Humidity</span>
+            <Image className='weather-icon' src={weatherData.icon} alt="weather_icon" width={175} height={175} />
+            <p className='temperature'>{weatherData.temperature}°C</p>
+            <p className='city'>{weatherData.city}</p>
+            <div className="weather-data">
+              <div className="col">
+                <Image src="/mist.svg" alt="humidity-icon" width={26} height={26} className='weather-data-img' />
+                <div>
+                  <p>{weatherData.humidity} %</p>
+                  <span>Humidity</span>
+                </div>
+              </div>
+              <div className="col">
+                <Image src="/wind.svg" alt="wind-icon" width={26} height={26} className='weather-data-img' />
+                <div>
+                  <p>{weatherData.windSpeed} km/h</p>
+                  <span>Wind Speed</span>
+                </div>
               </div>
             </div>
-            <div className="col">
-              <Image src="/wind.svg" alt="wind-icon" width={26} height={26} className='weather-data-img' />
-              <div>
-                <p>{weatherData.windSpeed} km/h</p>
-                <span>Wind Speed</span>
-              </div>
-            </div>
-          </div>
         </>
       )}
     </div>
   );
-};
+}

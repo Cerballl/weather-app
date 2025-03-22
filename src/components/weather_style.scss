@@ -1,3 +1,4 @@
+//styles//
 .weather {
     place-self: center;
     padding: 40px;
@@ -6,6 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: collapseFadeOut 1s  ease-out forwards;
 }
 
 .search-bar {
@@ -70,6 +72,11 @@
 
 .weather-data .col .weather-data-img {
     margin-top: 10px;
+}
+
+.main-info-animation { 
+  
+   
 }
 
 @media (max-width: 768px) {

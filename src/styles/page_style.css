@@ -1,13 +1,62 @@
+@-webkit-keyframes startupSite {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-75px);
+            transform: translateY(-75px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes startupSite {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-75px);
+            transform: translateY(-75px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@-webkit-keyframes collapseFadeOut {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes collapseFadeOut {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-animation: collapseFadeOut 1s ease-out forwards;
+          animation: collapseFadeOut 1s ease-out forwards;
 }
 
 .app {
   min-height: 100vh;
   display: -ms-grid;
   display: grid;
-  background: #b3d9ff;
 }
